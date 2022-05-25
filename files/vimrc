@@ -1,0 +1,114 @@
+set nocompatible          " We're running Vim, not Vi!
+syntax on                 " Syntax highlighting
+set showmatch             " Show matching parentheses
+set hls                   " Highlight all matching search patterns
+set ts=2 sw=2 expandtab  " Tab options
+set pastetoggle=          " Paste behavior toggle
+set hidden                " Opening file hides current buffer
+set number relativenumber " Hybrid line numbers.
+set splitbelow            " New horizontal splits open below
+set splitright            " New vertical splits open right
+set mouse=                " Disable mouse mode
+
+" vim-plug plugins
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'fatih/vim-go'
+Plug 'timothycrosley/isort'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'nvie/vim-flake8'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'psf/black'
+Plug 'sheerun/vim-polyglot'
+"Plug 'scrooloose/nerdtree'  " not playing nice
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'valloric/youcompleteme'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'elixir-lang/vim-elixir'
+Plug 'rust-lang/rust.vim'
+
+call plug#end()
+
+" theme
+let g:gruvbox_contrast_dark = 'hard'
+set background=dark
+colorscheme PaperColor
+hi Normal guibg=NONE ctermbg=NONE
+
+" Syntastic stuff
+set statusline+=%{FugitiveStatusline()}
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,F405,F403,E226,E231,E265,E741,E203'
+let g:syntastic_cpp_checkers = ['clang_check', 'gcc']
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height=3
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" TODO fix error with cargo checker:
+
+" Flake8 quickfix window no show.
+let g:flake8_show_quickfix=0
+
+" Ale
+let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_linters = {'cs': ['OmniSharp']}
+let g:ale_fix_on_save = 1
+
+" youcompleteme 
+" max completion suggestions menu. 
+let g:ycm_max_num_candidates = 20
+" no suggestions in comments.
+let g:ycm_complete_in_comments = 0
+" close preview window after insertion.
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+" omnisharp
+" Use the stdio version of OmniSharp-roslyn - this is the default
+let g:OmniSharp_server_stdio = 1
+
+" selector for Code Actions and Find Symbols features
+"let g:OmniSharp_selector_ui = 'fzf'    " Use fzf
+
+" use fzf as a selector fo :OmniSharpFindUsages results instead of the quickfix list
+"let g:OmniSharp_selector_findusages = 'fzf'
+
+" highlighting information about every symbol of the document
+let g:OmniSharp_highlighting = 1
+
+" omnisharp popups
+let g:OmniSharp_popup = 1
+
+" max line length marker
+highlight ColorColumn ctermbg=DarkRed
+call matchadd('ColorColumn', '\%81v', 88)
+
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=none
+hi IndentGuidesEven ctermbg=black
