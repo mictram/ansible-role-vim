@@ -5,13 +5,13 @@
     state: absent
   become: yes
 
-    #- name: Install plugins
-    #  command: vim -E -s -u "$HOME/.vim/vimrc" +PlugInstall +GoInstallBinaries +GoUpdateBinaries +CocInstall coc-db +qall
-    #  args:
-    #    chdir: "/home/{{ ansible_user_id }}/.vim"
-    #  ignore_errors: yes
-    #
-    #- name: Build Youcompleteme
-    #  command: python install.py --all
-    #  args:
-    #    chdir: "/home/{{ ansible_user_id }}/.vim/plugged/youcompleteme"
+- name: Install plugins
+  command: vim -E -s -u "$HOME/.vim/vimrc" +PlugInstall +GoInstallBinaries +GoUpdateBinaries +CocInstall coc-db +qall
+  args:
+    chdir: "/home/{{ ansible_user_id }}/.vim"
+  ignore_errors: yes
+
+- name: Build Youcompleteme
+  command: python install.py --all
+  args:
+    chdir: "/home/{{ ansible_user_id }}/.vim/plugged/youcompleteme"
