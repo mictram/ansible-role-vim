@@ -3,5 +3,6 @@
 
 - include_tasks: setup.yml
 
-- include_tasks: build.yml
-  when: not skip_vim_build
+- include_tasks: plugins.yml
+- include_tasks: ycm.yml
+  when: not skip_ycm_build

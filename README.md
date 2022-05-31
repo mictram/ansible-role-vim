@@ -14,8 +14,8 @@ Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
 ```yml
-# If 'true', skips installation and building of plugins.
-skip_vim_build: false
+# If 'true', skips building of of youcompleteme.
+skip_ycm_build: false
 ```
 
 Dependencies

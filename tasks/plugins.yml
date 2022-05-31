@@ -10,8 +10,3 @@
   args:
     chdir: "/home/{{ ansible_user_id }}/.vim"
   ignore_errors: yes
-
-- name: Build Youcompleteme
-  ansible.builtin.shell:
-    cmd: $(which python3) install.py --all
-    chdir: "/home/{{ ansible_user_id }}/.vim/plugged/youcompleteme"
