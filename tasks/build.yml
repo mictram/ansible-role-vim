@@ -12,6 +12,6 @@
   ignore_errors: yes
 
 - name: Build Youcompleteme
-  command: python install.py --all
+  command: $(which python3) install.py --all
   args:
     chdir: "/home/{{ ansible_user_id }}/.vim/plugged/youcompleteme"
