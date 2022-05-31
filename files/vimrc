@@ -41,6 +41,9 @@ Plug 'w0rp/ale'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['dbui', 'sql']}
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 
 call plug#end()
 
@@ -112,3 +115,16 @@ let g:indent_guides_start_level=2
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=none
 hi IndentGuidesEven ctermbg=black
+
+" vim-dadbod-ui
+let g:db_ui_save_location = '/home/michael/Nextcloud/queries'
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
