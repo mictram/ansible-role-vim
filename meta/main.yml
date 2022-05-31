@@ -10,6 +10,10 @@ galaxy_info:
   platforms:
     - name: ArchLinux
       versions:
-        - all
+        - rolling
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 22.04
   galaxy_tags:
     - vim
