@@ -1,0 +1,13 @@
+---
+- name: Install Vim and plugin dependancies (ArchLinux rolling)
+  pacman:
+    name:
+      - base-devel
+      - cmake
+      - go
+      - jre-openjdk
+      - python
+      - python-pip
+      - vim
+      - npm
+  become: yes

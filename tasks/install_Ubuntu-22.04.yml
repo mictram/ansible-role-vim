@@ -1,0 +1,13 @@
+---
+- name: Install Vim and plugin dependancies (Ubuntu 22.04)
+  apt:
+    name:
+      - build-essential
+      - cmake
+      - golang
+      - default-jdk
+      - python3
+      - python3-pip
+      - vim
+      - npm
+  become: yes
