@@ -8,3 +8,4 @@
       - vim
       - npm
       - homebrew/cask/oracle-jdk
+    state: present
