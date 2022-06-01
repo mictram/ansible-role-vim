@@ -7,5 +7,10 @@
       - python3
       - vim
       - npm
-      - homebrew/cask/oracle-jdk
+    state: present
+
+- name: Install plugin dependancies (cask) (MacOS 12.3.1)
+  community.general.homebrew_cask:
+    name:
+      - oracle-jdk
     state: present
