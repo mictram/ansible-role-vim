@@ -1,28 +1,28 @@
 ---
 - name: Create .vim directory
   ansible.builtin.file:
-    path: "/home/{{ ansible_user_id }}/.vim"
+    path: "{{ ansible_env.HOME }}/.vim"
     state: directory
 
 - name: Create plugged directory
   ansible.builtin.file:
-    path: "/home/{{ ansible_user_id }}/.vim/plugged"
+    path: "{{ ansible_env.HOME }}/.vim/plugged"
     state: directory
 
 - name: Install vim configuration
   ansible.builtin.copy:
     src: vimrc
-    dest: "/home/{{ ansible_user_id }}/.vim/vimrc"
+    dest: "{{ ansible_env.HOME }}/.vim/vimrc"
     force: yes
 
 - name: Install flake8 configuration
   ansible.builtin.copy:
     src: flake8
-    dest: "/home/{{ ansible_user_id }}/.config/flake8"
+    dest: "{{ ansible_env.HOME }}/.config/flake8"
     force: yes
 
 - name: Symlink vim configuration
   ansible.builtin.file:
-    src: "/home/{{ ansible_user_id }}/.vim/vimrc"
-    dest: "/home/{{ ansible_user_id }}/.vimrc"
+    src: "{{ ansible_env.HOME }}/.vim/vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
     state: link

@@ -1,12 +1,12 @@
 ---
 - name: Remove existing plugins directory
   ansible.builtin.file:
-    path: "/home/{{ ansible_user_id }}/.vim/plugged"
+    path: "{{ ansible_env.HOME }}/.vim/plugged"
     state: absent
   become: yes
 
 - name: Install plugins
   ansible.builtin.shell: vim -E -s -u "$HOME/.vim/vimrc" +PlugInstall +GoInstallBinaries +GoUpdateBinaries +CocInstall coc-db +qall
   args:
-    chdir: "/home/{{ ansible_user_id }}/.vim"
+    chdir: "{{ ansible_env.HOME }}/.vim"
   ignore_errors: yes
