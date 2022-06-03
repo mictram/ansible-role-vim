@@ -1,5 +1,6 @@
 ---
 - name: Build Youcompleteme
-  ansible.builtin.shell:
-    cmd: $(which python3) install.py --all
-    chdir: "{{ ansible_env.HOME }}/.vim/plugged/youcompleteme"
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "ymc_{{ ansible_distribution }}-{{ ansible_distribution_version}}.yml"
+    - "ycm_linux.yml"

@@ -1,0 +1,5 @@
+---
+- name: Build Youcompleteme (MacOSX 12.3.1)
+  ansible.builtin.shell:
+    cmd: $(which python3) install.py --all
+    chdir: "{{ ansible_env.HOME }}/.vim/plugged/youcompleteme"
