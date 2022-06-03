@@ -3,7 +3,6 @@
   include_tasks:
     file: "{{ item }}"
   with_first_found:
-    files:
-      - "ymc_{{ ansible_distribution }}-{{ ansible_distribution_version}}.yml"
-      - ycm_linux.yml
+    - "ymc_{{ ansible_distribution }}-{{ ansible_distribution_version}}.yml"
+    - ycm_linux.yml
     skip: true
