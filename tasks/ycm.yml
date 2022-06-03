@@ -1,8 +1,6 @@
 ---
 - name: Build Youcompleteme
-  include_tasks:
-    file: "{{ item }}"
+  include_tasks: "{{ item }}"
   with_first_found:
     - "ymc_{{ ansible_distribution }}-{{ ansible_distribution_version}}.yml"
     - ycm_linux.yml
-    skip: true
