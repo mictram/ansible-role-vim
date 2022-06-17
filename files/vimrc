@@ -2,13 +2,15 @@ set nocompatible          " We're running Vim, not Vi!
 syntax on                 " Syntax highlighting
 set showmatch             " Show matching parentheses
 set hls                   " Highlight all matching search patterns
-set ts=2 sw=2 expandtab  " Tab options
+set ts=2 sw=2 expandtab   " Tab options
 set pastetoggle=          " Paste behavior toggle
 set hidden                " Opening file hides current buffer
 set number relativenumber " Hybrid line numbers.
 set splitbelow            " New horizontal splits open below
 set splitright            " New vertical splits open right
 set mouse=                " Disable mouse mode
+
+autocmd VimResized * wincmd = " Auto resize splits
 
 " vim-plug plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
